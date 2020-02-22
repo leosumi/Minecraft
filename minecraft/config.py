@@ -1,17 +1,22 @@
 import math
+import configparser
 
 from util import tex_coords
 
-TICKS_PER_SEC = 60
+CONFIG_PATH = "config.ini"
+config = configparser.ConfigParser()
+config.read(CONFIG_PATH)
+
+TICKS_PER_SEC = config.getint("game", "ticks_per_sec")
 
 # Size of sectors used to ease block loading.
-SECTOR_SIZE = 16
+SECTOR_SIZE = config.getint("game", "sector_size")
 
-WALKING_SPEED = 5
-FLYING_SPEED = 15
+WALKING_SPEED = config.getint("player", "walking_speed")
+FLYING_SPEED = config.getint("player", "flying_speed")
 
-GRAVITY = 20.0
-MAX_JUMP_HEIGHT = 1.0 # About the height of a block.
+GRAVITY = config.getfloat("world", "gravity")
+MAX_JUMP_HEIGHT = config.getfloat("player", "max_jump_height") # About the height of a block.
 # To derive the formula for calculating jump speed, first solve
 #    v_t = v_0 + a * t
 # for the time at which you achieve maximum height, where a is the acceleration
@@ -20,9 +25,9 @@ MAX_JUMP_HEIGHT = 1.0 # About the height of a block.
 # Use t and the desired MAX_JUMP_HEIGHT to solve for v_0 (jump speed) in
 #    s = s_0 + v_0 * t + (a * t^2) / 2
 JUMP_SPEED = math.sqrt(2 * GRAVITY * MAX_JUMP_HEIGHT)
-TERMINAL_VELOCITY = 50
+TERMINAL_VELOCITY = config.getint("world", "terminal_velocity")
 
-PLAYER_HEIGHT = 2
+PLAYER_HEIGHT = config.getint("player", "player_height")
 
 
 TEXTURE_PATH = 'texture.png'
