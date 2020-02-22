@@ -1,3 +1,5 @@
+import sys
+
 from pyglet.gl import *
 
 from model import Model
@@ -51,4 +53,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    if sys.version_info[0] == 3:
+        main()
+    else:
+        raise Exception("You must use python 3")
