@@ -1,10 +1,6 @@
 import math
-import sys
 
 from util import tex_coords
-
-if sys.version_info[0] >= 3:
-    xrange = range
 
 TICKS_PER_SEC = 60
 
