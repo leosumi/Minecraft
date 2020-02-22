@@ -1,5 +1,3 @@
-from __future__ import division
-
 from pyglet.gl import *
 
 from model import Model
