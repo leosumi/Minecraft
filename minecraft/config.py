@@ -7,6 +7,10 @@ CONFIG_PATH = "config.ini"
 config = configparser.ConfigParser()
 config.read(CONFIG_PATH)
 
+WIDTH = config.getint("window", "width")
+HEIGHT = config.getint("window", "height")
+CAPTION = config["window"]["caption"]
+
 TICKS_PER_SEC = config.getint("game", "ticks_per_sec")
 
 # Size of sectors used to ease block loading.
